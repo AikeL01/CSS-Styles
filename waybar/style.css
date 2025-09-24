@@ -1,0 +1,144 @@
+/*
+ * style.css for Waybar
+ * Inspired by the macOS Tahoe "Liquid Glass" aesthetic (Corrected Version)
+ */
+
+* {
+    /* Maintained a clean, modern font stack */
+    font-family: "SF Pro Display", "Cantarell", "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 500; /* Medium weight for clarity */
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+}
+
+/* The whole bar */
+window#waybar {
+    /* A cooler, more neutral gray with significant transparency for the "Liquid Glass" effect */
+    background-color: rgba(45, 45, 55, 0.45);
+    color: #fcfcfc; /* A brighter, cleaner white for better contrast on the transparent background */
+    border-radius: 14px; /* Slightly more pronounced rounded corners, a key feature of Tahoe's windows */
+    margin: 6px; /* A bit more margin to enhance the "floating" appearance */
+    border: 1px solid rgba(255, 255, 255, 0.12); /* A slightly more visible border to define the glass edge */
+    /* backdrop-filter: blur(10px); This is the key to the frosted glass effect, though may require compositor support. Uncomment if your compositor (swayfx, hyprland) supports it. */
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+/* General style for all modules */
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#mpd,
+#bluetooth,
+#window,
+#workspaces,
+#custom-power,
+#custom-spotify {
+    background-color: rgba(60, 60, 70, 0.4); /* A slightly lighter gray for module differentiation */
+    padding: 3px 14px; /* Increased padding for a more spacious feel */
+    margin: 5px 4px;
+    border-radius: 12px; /* Pill-shaped, but with a radius consistent with the main bar */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Style for individual workspace buttons */
+#workspaces button {
+    color: #e0e0e0;
+    background-color: transparent;
+    padding: 5px 9px;
+    margin: 0 4px;
+    border-radius: 10px;
+    font-weight: 600; /* Bolder for better visibility */
+}
+
+#workspaces button:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+#workspaces button.active {
+    background-color: #007aff; /* A more vibrant, modern blue, closer to recent macOS accents */
+    color: #ffffff;
+}
+
+#workspaces button.urgent {
+    background-color: #ff3b30; /* A brighter, more modern red for urgency */
+}
+
+/* Specific module colors and styles */
+#clock {
+    color: #f0f0f0;
+    font-weight: 600; /* Semibold for prominence */
+}
+
+#battery {
+    color: #a9b4ff;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: #34c759; /* A vibrant macOS green */
+}
+
+@keyframes blink {
+    to {
+        background-color: #ff3b30;
+        color: #f0f0f0;
+    }
+}
+
+#battery.critical:not(.charging) {
+    color: #ff3b30; /* Brighter red for critical status */
+    animation-name: blink;
+    animation-duration: 0.7s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#cpu {
+    color: #ff9500; /* macOS orange */
+}
+
+#memory {
+    color: #ffcc00; /* macOS yellow */
+}
+
+#network {
+    color: #5ac8fa; /* macOS teal */
+}
+
+#network.disconnected {
+    color: #ff3b30;
+}
+
+#pulseaudio {
+    color: #5856d6; /* macOS indigo */
+}
+
+#pulseaudio.muted {
+    color: #8e8e93; /* Muted gray */
+}
+
+#tray {
+    padding: 3px 9px;
+}
+
+#window {
+    font-weight: 600;
+    color: #f0f0f0;
+}
